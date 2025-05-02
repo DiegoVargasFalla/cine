@@ -5,7 +5,17 @@
                 <Logo></Logo>
             </div>
             <div class="container-sections">
-
+                <div class="cont-items">
+                    <itemHeader
+                        text="Peliculas"
+                    ></itemHeader>
+                    <itemHeader
+                        text="Promociones"
+                    ></itemHeader>
+                </div>
+                <div class="container-buttons-auth">
+                <loginRegisterButton></loginRegisterButton>
+            </div>
             </div>
         </div>
     </div>
@@ -13,6 +23,8 @@
 
 <script setup>
 import Logo from '../modules/logo/Logo.vue';
+import itemHeader from '../itemsHeader/itemHeader.vue';
+import loginRegisterButton from '../buttons/loginRegisterButton.vue';
 
 </script>
 
@@ -50,12 +62,28 @@ import Logo from '../modules/logo/Logo.vue';
 
 .container-sections {
     position: relative;
-    /* background-color: red; */
+    /* background-color: orange; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 50%;
+    /* gap: 20%; */
+}
+
+.cont-items {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 50%;
+    gap: 10%;
+}
+
+.container-buttons-auth {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 </style>

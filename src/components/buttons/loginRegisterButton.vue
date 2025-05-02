@@ -1,0 +1,42 @@
+<template>
+    <div class="button-container">
+      <button class="cine-button">Login</button>
+      <button class="cine-button">Register</button>
+    </div>
+  </template>
+  
+  <script setup>
+  // No se requiere JS en este caso
+  </script>
+  
+  <style scoped>
+  .button-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .cine-button {
+    background-color: #800020; /* bordo */
+    color: white;
+    font-family: "Cal Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cine-button:hover {
+    background-color: #a52a2a; /* tono más claro al pasar el mouse */
+    transform: scale(1.05);
+  }
+  
+  .cine-button:active {
+    transform: scale(0.97);
+  }
+  </style>
+  
