@@ -1,0 +1,12 @@
+/* @import './base.css'; */
+
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
