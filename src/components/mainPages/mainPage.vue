@@ -29,19 +29,19 @@ import Promotion from '../modules/promotions/Promotion.vue';
 
 const promotionsImg = [
   {
-    img: 'src/assets/img/promoCine.jpg',
+    img: '@/assets/img/promoCine.jpg',
     color: 'red'
   },
   {
-    img: 'src/assets/img/promoCine2.jpg',
+    img: '@/assets/img/promoCine2.jpg',
     color: 'green'
   },
   {
-    img: 'src/assets/img/promoCine3.jpg',
+    img: '@/assets/img/promoCine3.jpg',
     color: 'orange'
   },
   {
-    img: 'src/assets/img/promoCine4.jpg',
+    img: '@/assets/img/promoCine4.jpg',
     color: 'yellow'
   },
 ]
