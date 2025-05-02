@@ -26,22 +26,26 @@
 <script setup>
 import CardMovie from '../modules/cardMovie/CardMovie.vue';
 import Promotion from '../modules/promotions/Promotion.vue';
+import promoCine1 from '@/assets/img/promoCine.jpg'
+import promoCine2 from '@/assets/img/promoCine2.jpg'
+import promoCine3 from '@/assets/img/promoCine3.jpg'
+import promoCine4 from '@/assets/img/promoCine4.jpg'
 
 const promotionsImg = [
   {
-    img: '@/assets/img/promoCine.jpg',
+    img: promoCine1,
     color: 'red'
   },
   {
-    img: '@/assets/img/promoCine2.jpg',
+    img: promoCine2,
     color: 'green'
   },
   {
-    img: '@/assets/img/promoCine3.jpg',
+    img: promoCine3,
     color: 'orange'
   },
   {
-    img: '@/assets/img/promoCine4.jpg',
+    img: promoCine4,
     color: 'yellow'
   },
 ]
