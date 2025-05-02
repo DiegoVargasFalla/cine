@@ -30,7 +30,7 @@ import promoCine1 from '@/assets/img/promoCine.jpg'
 import promoCine2 from '@/assets/img/promoCine2.jpg'
 import promoCine3 from '@/assets/img/promoCine3.jpg'
 import promoCine4 from '@/assets/img/promoCine4.jpg'
-
+import movie from '@/assets/img/theAmateur.png'
 const promotionsImg = [
   {
     img: promoCine1,
@@ -58,7 +58,7 @@ const movieList = [
     duracion: 100,
     genero: "Ciencia ficción",
     puntuacion: 8.8,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Pulp Fiction",
@@ -66,7 +66,7 @@ const movieList = [
     duracion: 130,
     genero: "Crimen",
     puntuacion: 8.9,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "El Padrino",
@@ -74,7 +74,7 @@ const movieList = [
     duracion: 140,
     genero: "Drama",
     puntuacion: 9.2,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Inception",
@@ -82,7 +82,7 @@ const movieList = [
     duracion: 180,
     genero: "Ciencia ficción",
     puntuacion: 8.8,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Pulp Fiction",
@@ -90,7 +90,7 @@ const movieList = [
     duracion: 140,
     genero: "Crimen",
     puntuacion: 8.9,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "El Padrino",
@@ -98,7 +98,7 @@ const movieList = [
     duracion: 120,
     genero: "Drama",
     puntuacion: 9.2,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Inception",
@@ -106,7 +106,7 @@ const movieList = [
     duracion: 140,
     genero: "Ciencia ficción",
     puntuacion: 8.8,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Pulp Fiction",
@@ -114,7 +114,7 @@ const movieList = [
     duracion: 140,
     genero: "Crimen",
     puntuacion: 8.9,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "El Padrino",
@@ -122,7 +122,7 @@ const movieList = [
     duracion: 110,
     genero: "Drama",
     puntuacion: 9.2,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Inception",
@@ -130,7 +130,7 @@ const movieList = [
     duracion: 140,
     genero: "Ciencia ficción",
     puntuacion: 8.8,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "Pulp Fiction",
@@ -138,7 +138,7 @@ const movieList = [
     duracion: 190,
     genero: "Crimen",
     puntuacion: 8.9,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   },
   {
     titulo: "El Padrino",
@@ -146,7 +146,7 @@ const movieList = [
     duracion: 250,
     genero: "Drama",
     puntuacion: 9.2,
-    img: 'src/assets/img/theAmateur.png'
+    img: movie
   }
 ];
 
