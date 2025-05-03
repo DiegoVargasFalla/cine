@@ -1,6 +1,9 @@
 <template>
     <div class="container-header">
         <div class="container-main-logo-sections">
+            <div class="container-icon-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <div class="container-title-logo">
                 <Logo></Logo>
             </div>
@@ -14,15 +17,15 @@
                     ></itemHeader>
                 </div>
                 <div class="container-buttons-auth">
-                <loginRegisterButton></loginRegisterButton>
-            </div>
+                    <loginRegisterButton></loginRegisterButton>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import Logo from '../modules/logo/Logo.vue';
+import Logo from '../logo/Logo.vue';
 import itemHeader from '../itemsHeader/itemHeader.vue';
 import loginRegisterButton from '../buttons/loginRegisterButton.vue';
 
@@ -84,6 +87,39 @@ import loginRegisterButton from '../buttons/loginRegisterButton.vue';
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 30%;
+}
+
+.container-icon-menu {
+    position: relative;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    border: solid 1px white;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1350px){
+    .container-sections {
+        display: none;
+    }
+
+    .container-title-logo {
+        width: 100%;
+    }
+
+    .container-main-logo-sections {
+        width: 100%;
+        padding-left: 20px;
+        /* gap: 25px; */
+    }
+
+    .container-icon-menu {
+        display: flex;
+    }
 }
 
 </style>

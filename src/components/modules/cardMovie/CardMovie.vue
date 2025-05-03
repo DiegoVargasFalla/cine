@@ -1,5 +1,5 @@
 <template>
-    <div class="container-card">
+    <div class="container-card" @click="onClick">
         <div class="container-img"  :style="{ backgroundImage: `url(${img})` }">
             <i class="fa-solid fa-camera icon-camera"></i>
         </div>
@@ -10,44 +10,55 @@
                 </h2>
             </div>
             <div class="container-gener-year">
-                <div class="content-year">
-                    <h3 class="text-year info">
-                        {{ time }}
+                <div class="content-scope">
+                    <i class="fa-solid fa-star icon"></i>
+                    <h3 class="text-scope info">
+                        {{ scope }}
                     </h3>
                 </div>
-                <span class="info">min</span>
-                <hr class="hr">
-                <div class="content-gender">
-                    <h3 class="text-gender info">
-                        {{ gender }}
-                    </h3>
-                </div>
-            </div>
-            <div class="content-scope">
-                <i class="fa-solid fa-star icon"></i>
-                <h3 class="text-scope info">
-                    {{ scope }}
-                </h3>
-            </div>
-            <div class="container-director">
-                <h3 class="text-director info">
-                    {{ director }}
-                </h3>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
+
+const moviesStore = useMoviesStore();
+
 
 const props = defineProps({
+    id: Number,
     title: String,
     director: String,
     time: Number,
-    gender: String,
+    gender: Array,
     scope: Number,
-    img: String
+    img: String,
+    description: String
 })
+
+const onClick = async () => {
+    console.log("-> in extracts gender")
+    extractGenders()
+    await moviesStore.getCredits(props.id)
+    console.log(moviesStore.getDirector());
+}
+
+function extractGenders() {
+    const listGendersMovie = props.gender;
+    const newListGenders = []
+
+    listGendersMovie.forEach(g => {
+        moviesStore.getAllListGenders().forEach(gender => {
+            if (g === gender.id) {
+                newListGenders.push(gender.name)
+            }
+        })
+    })
+    moviesStore.setListMoviePerMovie(newListGenders);
+    console.log(moviesStore.getListGendersPerMovie());
+}
 
 </script>
 
@@ -84,7 +95,7 @@ const props = defineProps({
 .container-img {
     position: relative;
     background-color: gray;
-    height: 75%;
+    height: 85%;
     width: 100%;
     background-size: 100% 100%;
     display: flex;
@@ -101,9 +112,9 @@ const props = defineProps({
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 25%;
+    height: 15%;
     width: 100%;
-    padding: 10px;
+    padding: 5px;
 }
 
 .container-title {
@@ -117,10 +128,11 @@ const props = defineProps({
 
 .text-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
+    font-size: 19px;
     text-transform: uppercase;
     color: whitesmoke;
-    letter-spacing: 1.5px;
+    font-weight: 500;
+    /* letter-spacing: 0px; */
 }
 
 .container-gener-year {

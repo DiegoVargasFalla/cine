@@ -7,9 +7,9 @@
 </template>
 
 <script setup>
-import Header from '@/components/mainPages/Header.vue';
-import Footer from '@/components/mainPages/Footer.vue';
-import mainPage from '@/components/mainPages/mainPage.vue';
+import Header from '@/components/modules/mainPages/Header.vue';
+import Footer from '@/components/modules/mainPages/Footer.vue';
+import mainPage from '@/components/modules/mainPages/mainPage.vue';
 </script>
 
 <style scoped>

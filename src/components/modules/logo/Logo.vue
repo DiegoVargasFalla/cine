@@ -1,9 +1,10 @@
 <template>
     <div class="content-without-pading">
+        <a href="/" class="link"></a>
         <div class="container-icon-teatro">
         </div>
         <div class="container-title-teatro">
-            <h1 class="text-title">Teatro Belgrano</h1>
+            <h1 class="text-title">Cine Belgrano</h1>
         </div>
     </div>
 </template>
@@ -11,6 +12,16 @@
 <script setup></script>
 
 <style scoped>
+
+.link {
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    z-index: 100;
+}
 
 .content-without-pading {
     position: relative;
