@@ -219,7 +219,7 @@ const url = computed(() =>  'https://image.tmdb.org/t/p/w500' + moviesStore.getB
     }
 }
 
-@media screen and (max-width: 100px) {
+@media screen and (max-width: 1000px) {
     .container-descripton {
         width: 98%;
     }
