@@ -30,16 +30,4 @@ const props = defineProps({
     scroll-snap-align: center;
 }
 
-/* flex: 0 0 100%; */
-/* align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    object-fit: fill;
-    height: 100%;
-    width: 100%;
-    flex-shrink: 0; */
-
-
 </style>

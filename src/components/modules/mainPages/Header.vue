@@ -1,5 +1,5 @@
 <template>
-    <div class="container-header">
+    <div class="container-header" id="container-header">
         <div class="container-main-logo-sections">
             <div class="container-icon-menu">
                 <i class="fa-solid fa-bars"></i>
@@ -29,9 +29,37 @@ import Logo from '../logo/Logo.vue';
 import itemHeader from '../itemsHeader/itemHeader.vue';
 import loginRegisterButton from '../buttons/loginRegisterButton.vue';
 
+
+
+document.addEventListener('scroll', () => {
+    const header = document.getElementById('container-header')
+
+    if (window.scrollY > 1) {
+        header.classList.add('header-scroll')
+    } else {
+        header.classList.remove('header-scroll')
+    }
+
+})
+
+
 </script>
 
 <style scoped>
+
+.container-header {
+    position: fixed;
+    /* background-color: #8e0b0b; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    height: 9vh;
+    width: 80%;
+    z-index: 200;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
 
 .container-main-logo-sections {
     position: relative;
@@ -40,16 +68,6 @@ import loginRegisterButton from '../buttons/loginRegisterButton.vue';
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 80%;
-}
-
-.container-header {
-    position: relative;
-    background-color: #8e0b0b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 9vh;
     width: 100%;
 }
 
@@ -120,6 +138,18 @@ import loginRegisterButton from '../buttons/loginRegisterButton.vue';
     .container-icon-menu {
         display: flex;
     }
+
+    .container-header {
+        width: 95%;
+        height: 9vh;
+    }
+}
+
+.header-scroll {
+    backdrop-filter: blur(6px);
+    box-shadow: 0 3px 6px 0 rgb(104, 90, 90);
+    background: #a40808a8;
+    top: 1rem;
 }
 
 </style>

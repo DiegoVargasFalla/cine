@@ -12,12 +12,13 @@
         <CardMovie
         v-for="(item, key) in moviesStore.getListMovie()"
         :key="key"
+        :img="url + item.poster_path"
         :id="item.id"
         :title="item.title"
         :gender="item.genre_ids"
         :scope="item.vote_average"
-        :img="url + item.poster_path"
         :description="item.overview"
+        :backdrop_pat="item.backdrop_path"
         ></CardMovie>
       </div>
     </div>
@@ -26,19 +27,21 @@
 <script setup>
 import CardMovie from '../cardMovie/CardMovie.vue';
 import Promotion from '../promotions/Promotion.vue';
+
+
 import promoCine1 from '@/assets/img/promoCine.jpg'
 import promoCine2 from '@/assets/img/promoCine2.jpg'
 import promoCine3 from '@/assets/img/promoCine3.jpg'
 import promoCine4 from '@/assets/img/promoCine4.jpg'
 
 import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
+import { computed } from 'vue';
 
 
 const moviesStore = useMoviesStore();
 
 moviesStore.getMoviesInfo();
 moviesStore.getGenders();
-
 
 const url = 'https://image.tmdb.org/t/p/w300/'
 const promotionsImg = [
@@ -71,7 +74,6 @@ const promotionsImg = [
   align-items: center;
   height: 45vh;
   width: 80%;
-  margin-top: 10px;
   background: linear-gradient(to right, #7c2727, #a44949 , #c65656);
   
   scroll-behavior: smooth;
@@ -91,13 +93,17 @@ const promotionsImg = [
 
 .container-main-page {
     position: relative;
-    background-color: black;
+    /* background-color: black; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     /* height: 76vh; */
     width: 100%;
+    margin-top: 10vh;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .content-cards-movies {
@@ -108,7 +114,7 @@ const promotionsImg = [
     align-items: center;
     justify-content: center;
     padding: 10px 0;
-    width: 75%; /* here it had width 100% for cellphones -> in 1170px screen*/
+    width: 80%; /* here it had width 100% for cellphones -> in 1170px screen*/
     gap: 15px;
     flex-wrap: wrap;
     margin: 20px 0 ;

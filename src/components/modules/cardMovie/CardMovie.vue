@@ -23,26 +23,39 @@
 
 <script setup>
 import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
+import { usePreviewSotre } from '../previewMovie/previewMovieStore';
 
 const moviesStore = useMoviesStore();
+const previewMovie = usePreviewSotre();
 
 
 const props = defineProps({
+    img: String,
     id: Number,
     title: String,
     director: String,
     time: Number,
     gender: Array,
     scope: Number,
-    img: String,
-    description: String
+    
+    description: String,
+    backdrop_pat: String,
 })
 
 const onClick = async () => {
-    console.log("-> in extracts gender")
+    moviesStore.setBackdropPath(props.backdrop_pat);
+
+    moviesStore.setTitle(props.title);
+    moviesStore.setId(props.id);
+    moviesStore.setScope(props.scope);
+    moviesStore.setDescription(props.description);
+
+    moviesStore.setLayer(true);
+    previewMovie.setShowPreviewMovie(true);
+
     extractGenders()
-    await moviesStore.getCredits(props.id)
-    console.log(moviesStore.getDirector());
+    moviesStore.getCredits(props.id)
+    moviesStore.getTimeMovie(props.id);
 }
 
 function extractGenders() {
@@ -52,12 +65,16 @@ function extractGenders() {
     listGendersMovie.forEach(g => {
         moviesStore.getAllListGenders().forEach(gender => {
             if (g === gender.id) {
-                newListGenders.push(gender.name)
+                newListGenders.push(gender.name);
             }
         })
     })
     moviesStore.setListMoviePerMovie(newListGenders);
     console.log(moviesStore.getListGendersPerMovie());
+}
+
+function getRunTimeMovie() {
+    // 
 }
 
 </script>
@@ -89,7 +106,7 @@ function extractGenders() {
 .container-card:hover {
     transform: scale(1.04) translateY(-3px);
     cursor: pointer;
-    box-shadow: 3px 3px 5px rgb(133, 125, 125);
+    box-shadow: 3px 3px 5px rgba(110, 103, 103, 0.764);
 }
 
 .container-img {

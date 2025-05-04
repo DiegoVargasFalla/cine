@@ -17,8 +17,19 @@ export const useMoviesStore = defineStore('moviesStore', {
         listGendersPerMovie: Array,
         listCredits: Array,
         extractDirector: String,
+        layer: false,
+        backdrop_path: String,
+        listDetailsMovie: Array,
+        listMovieId: [],
+        isIdMovie: false,
     }),
     actions: {
+        getId() {
+            return this.id;
+        },
+        setId() {
+            this.id = this.id;
+        },
         getTitle() {
             return this.title;
         },
@@ -35,7 +46,7 @@ export const useMoviesStore = defineStore('moviesStore', {
             return this.time;
         },
         setTime(value) {
-            this.title = this.time;
+            this.time = value;
         },
         getScope() {
             return this.scope;
@@ -64,6 +75,12 @@ export const useMoviesStore = defineStore('moviesStore', {
         getListGendersPerMovie() {
             return this.listGendersPerMovie;
         },
+        getDescription() {
+            return this.description;
+        },
+        setDescription(value) {
+            this.description = value;
+        },
         setListMoviePerMovie(value) {
             this.listGendersPerMovie = value;
         },
@@ -78,6 +95,36 @@ export const useMoviesStore = defineStore('moviesStore', {
         },
         setExtractDirector(value) {
             this.extractDirector = value;
+        },
+        getLayer() {
+            return this.layer;
+        },
+        setLayer(value) {
+            this.layer = value;
+        },
+        getBackdropPath() {
+            return this.backdrop_path;
+        },
+        setBackdropPath(value) {
+            this.backdrop_path = value;
+        },
+        getListDetailsMovie() {
+            return this.listDetailsMovie;
+        },
+        setListDetailsMovie(value) {
+            this.listDetailsMovie = value;
+        },
+        getListMovieId() {
+            return this.listMovieId;
+        },
+        setListMovieId(value) {
+            this.listMovieId = value;
+        },
+        getIsIdMovie() {
+            return this.isIdMovie;
+        },
+        setIsIdMovie(value) {
+            this.isIdMovie = value;
         },
         getOptionsRequest() {
             const options = {
@@ -100,6 +147,8 @@ export const useMoviesStore = defineStore('moviesStore', {
                 if(data) {
                     console.log(data.results);
                     this.setListMovie(data.results)
+                    this.getAllMovieIds();
+                    this.setIsIdMovie(true);
                 }
                 
             } catch (Error) {
@@ -118,7 +167,6 @@ export const useMoviesStore = defineStore('moviesStore', {
 
                 const data = response.data;
                 if(data) {
-                    console.log("-> genderes data")
                     console.log(data.genres);
                     this.setAllListGenders(data.genres);
                 }
@@ -152,6 +200,32 @@ export const useMoviesStore = defineStore('moviesStore', {
             } catch(Error) {
                 console.log(Error)
             }
+        },
+        async getTimeMovie(id) {
+            console.log("-> in time");
+            const auth = this.getOptionsRequest();
+            try {
+                console.log("in request time");
+                const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=es-ES`, 
+                    auth
+                )
+                const data = response.data;
+                if (data) {
+                    this.setTime(data.runtime);
+                } else {
+                }
+
+            } catch(Error) {
+                console.log(Error);
+            }
+
+        },
+        getAllMovieIds() {
+            const listId = [];
+            this.getListMovie().forEach(movie => {
+                listId.push(movie.id);
+            });
+            this.setListMovieId(listId);
         }
     }
 })

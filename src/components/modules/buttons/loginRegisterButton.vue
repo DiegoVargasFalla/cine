@@ -23,11 +23,12 @@
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 2px;
-    padding: 0.75rem 2rem;
+    padding: 0.5rem 1.5rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    border: solid 1px white;
   }
   
   .cine-button:hover {

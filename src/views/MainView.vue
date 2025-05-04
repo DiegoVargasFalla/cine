@@ -3,6 +3,7 @@
         <Header></Header>
         <mainPage></mainPage>
         <Footer></Footer>
+        <Layer v-if="showLayer"></Layer>
     </div>
 </template>
 
@@ -10,13 +11,27 @@
 import Header from '@/components/modules/mainPages/Header.vue';
 import Footer from '@/components/modules/mainPages/Footer.vue';
 import mainPage from '@/components/modules/mainPages/mainPage.vue';
+import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
+import Layer from '@/components/modules/layer/Layer.vue';
+import { computed } from 'vue';
+
+const moviesStore = useMoviesStore();
+
+const showLayer = computed(() => moviesStore.getLayer());
+
+
 </script>
 
 <style scoped>
 
 .container-main {
     position: relative;
-    background-color: #151313;
+    background-color: black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;   
     min-height: 100%;
     width: 100%;
 }
