@@ -239,7 +239,7 @@ const url = computed(() =>  'https://image.tmdb.org/t/p/w500' + moviesStore.getB
     }
 
     .font-text-strong {
-        font-size: 3vw;
+        font-size: 3.5vw;
     }
 
     .container-button-buy {
