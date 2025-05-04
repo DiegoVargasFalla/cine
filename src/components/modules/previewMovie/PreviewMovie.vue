@@ -13,8 +13,8 @@
                             :gender="item"
                         ></itemGender>
                         </li>
-                        <li class="text-li"><strong class="font-text-strong">Duración:</strong> <i class="fa-solid fa-star icon"></i> {{ moviesStore.getTime() }} min</li>
-                        <li class="text-li"><strong class="font-text-strong">Clasificación:</strong> {{ moviesStore.getScope() }}</li>
+                        <li class="text-li"><strong class="font-text-strong">Duración:</strong>{{ moviesStore.getTime() }} min</li>
+                        <li class="text-li"><strong class="font-text-strong">Clasificación:</strong><i class="fa-solid fa-star icon"></i>  {{ moviesStore.getScope() }}</li>
                         <li class="text-li"><strong class="font-text-strong">Director:</strong> {{ moviesStore.getDirector() }}</li>
                         </ul>
                     <div class="container-descripton">
