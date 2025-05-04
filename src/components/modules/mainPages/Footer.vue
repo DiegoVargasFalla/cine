@@ -1,7 +1,7 @@
 <template>
     <footer class="container-footer">
       <div class="footer-content">
-        <p class="footer-text">© 2025 CinePlus. Todos los derechos reservados.</p>
+        <p class="footer-text">© 2025 Cine Belgrano. Todos los derechos reservados.</p>
         <div class="footer-links">
           <a href="#">Política de privacidad</a>
           <a href="#">Términos y condiciones</a>
