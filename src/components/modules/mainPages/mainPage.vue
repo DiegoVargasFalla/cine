@@ -69,12 +69,13 @@ const promotionsImg = [
 
 .container-promotions {
   position: relative;
-  background-color: orangered;
+  background-color: #12100D;
   display: flex;
   align-items: center;
-  height: 45vh;
+  height: 50vh;
   width: 80%;
-  background: linear-gradient(to right, #7c2727, #a44949 , #c65656);
+  border-radius: 30px;
+  /* background: linear-gradient(to right, #7c2727, #a44949 , #c65656); */
   
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -83,8 +84,8 @@ const promotionsImg = [
   scrollbar-width: none;
   -ms-overflow-style: none;
 
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  /* mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
+  /* -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
 }
 
 .container-promotions::-webkit-scrollbar {

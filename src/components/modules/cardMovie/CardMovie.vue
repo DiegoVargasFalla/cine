@@ -145,7 +145,7 @@ function getRunTimeMovie() {
 
 .text-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 19px;
+    font-size: 1.18em;
     text-transform: uppercase;
     color: whitesmoke;
     font-weight: 500;

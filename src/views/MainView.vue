@@ -15,7 +15,9 @@ import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
 import Layer from '@/components/modules/layer/Layer.vue';
 import { computed } from 'vue';
 
+
 const moviesStore = useMoviesStore();
+
 
 const showLayer = computed(() => moviesStore.getLayer());
 
@@ -26,7 +28,7 @@ const showLayer = computed(() => moviesStore.getLayer());
 
 .container-main {
     position: relative;
-    background-color: black;
+    /* background-color: black; */
     position: relative;
     display: flex;
     align-items: center;

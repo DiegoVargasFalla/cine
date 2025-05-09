@@ -1,5 +1,5 @@
 <template>
-    <div class="container-preview">
+    <div class="container-preview" @click.stop>
         <div class="background-image" :style="{backgroundImage: `url(${url})`}"></div>
         <div class="container-info-preview-moview">
             <div class="content-info-movie">
@@ -21,7 +21,7 @@
                         <p class="description">{{ moviesStore.getDescription() }}</p>
                     </div>
                 </div>
-                <RouterLink to="/tickets" class="container-button-buy text-buy">Comprar Entradas</RouterLink>
+                <RouterLink to="/tickets" @click="onCLikRouterLink" class="container-button-buy text-buy">Comprar Entradas</RouterLink>
             </div>
             
         </div>
@@ -33,10 +33,21 @@ import itemGender from '../itemsGenders/itemGender.vue';
 import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
 import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
+import { usePreviewSotre } from './previewMovieStore';
 
 const moviesStore = useMoviesStore();
+const previewMovieStore = usePreviewSotre();
 
 const url = computed(() =>  'https://image.tmdb.org/t/p/w500' + moviesStore.getBackdropPath());
+
+const onClick = () => {
+    console.log("-> click en preview button");
+}
+
+const onCLikRouterLink = () => {
+    console.log('-> click en routerLink');
+    moviesStore.setLayer(false);
+}
 
 </script>
 
@@ -57,6 +68,7 @@ const url = computed(() =>  'https://image.tmdb.org/t/p/w500' + moviesStore.getB
     overflow: hidden;
     border: solid 0.5px white;
     color: white;
+    z-index: 250;
 }
 
 .background-image {
