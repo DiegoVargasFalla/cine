@@ -49,7 +49,6 @@ document.addEventListener('scroll', () => {
 
 .container-header {
     position: fixed;
-    /* background-color: #8e0b0b; */
     display: flex;
     align-items: center;
     justify-content: center;

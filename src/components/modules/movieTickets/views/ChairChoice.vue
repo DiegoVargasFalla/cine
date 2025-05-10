@@ -9,7 +9,10 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useChairStore } from '../store/ChairStore';
 
+
+const chairStore = useChairStore();
 
 const selected = ref(false);
 
@@ -18,15 +21,22 @@ const props = defineProps({
     row: String,
     num: Number,
     available: Boolean,
-    exaple: Boolean
+    exaple: Boolean,
+    proof: Boolean
 })
 
 const clickChair = () => {
-    if(props.available === true) {
+    const seat = {id: props.id, row: props.row, num: props.num}
+    if(props.available === true && !props.proof) {
         if(!selected.value) {
             selected.value = true;
+            chairStore.addChair(seat);
+            chairStore.calculateTotal();
+            console.log(chairStore.getListSeat());
         } else {
             selected.value = false;
+            chairStore.deleteChair(seat.id);
+            chairStore.substractSeat();
         }
     } 
 }
@@ -44,7 +54,7 @@ const clickChair = () => {
     justify-content: center;
     width: 60px;
     height: 55px;
-    background-color: rgb(20, 157, 20);
+    background-color: rgb(37, 181, 37);
     color: white;
     text-align: center;
     line-height: 40px;
@@ -54,7 +64,7 @@ const clickChair = () => {
     border-bottom-right-radius: 0;
     cursor: pointer;
     transition: background-color 0.2s;
-    /* border: solid 0.5px whitesmoke; */
+
     box-shadow: 1px 1px 3px rgb(87, 85, 85);
     transition: all 0.2s ease;
 
@@ -71,7 +81,7 @@ const clickChair = () => {
 }
 
 .no-available {
-    background-color:  rgb(177, 30, 30);
+    background-color:  #a40808; 
 }
 
 .icon-check {
@@ -81,41 +91,12 @@ const clickChair = () => {
     left: 3px;
 }
 
+@media screen and (max-width: 1000px) {
+    .container-component-chair {
+        height: auto;
+        width: auto;
+        padding: 2px 15px;
+    }
+}
+
 </style>
-
-
-
-
-
-
-<!-- <template>
-    <div class="chair">
-    </div>
-</template>
-  
-<script>
-
-</script>
-  
-<style scoped>
-
-.chair {
-    width: 40px;
-    height: 40px;
-    background-color: #3f3f3f;
-    color: white;
-    text-align: center;
-    line-height: 40px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.2s;
-}
-  
-.asiento:hover {
-    background-color: #5c5c5c;
-}
-</style> -->

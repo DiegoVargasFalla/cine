@@ -1,7 +1,7 @@
 <template>
     <div class="container-main">
         <Header></Header>
-        <mainPage></mainPage>
+        <RouterView></RouterView>
         <Footer></Footer>
         <Layer v-if="showLayer"></Layer>
     </div>
@@ -10,7 +10,7 @@
 <script setup>
 import Header from '@/components/modules/mainPages/Header.vue';
 import Footer from '@/components/modules/mainPages/Footer.vue';
-import mainPage from '@/components/modules/mainPages/mainPage.vue';
+// import mainPage from '@/components/modules/mainPages/mainPage.vue';
 import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
 import Layer from '@/components/modules/layer/Layer.vue';
 import { computed } from 'vue';

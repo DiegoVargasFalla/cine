@@ -83,7 +83,7 @@ function getRunTimeMovie() {
 
 .container-card {
     position: relative;
-    background-color: rgb(66, 35, 35);
+    background-color: #a40808;
     display: flex;
     align-items: center;
     justify-content: center;

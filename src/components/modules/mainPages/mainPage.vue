@@ -109,7 +109,7 @@ const promotionsImg = [
 
 .content-cards-movies {
     position: relative;
-    background: url(prop.img);
+    /* background: url(prop.img); */
     /* background-color: green; */
     display: flex;
     align-items: center;

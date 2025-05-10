@@ -17,7 +17,7 @@
   }
   
   .cine-button {
-    background-color: #800020; /* bordo */
+    background-color: #a40808; /* bordo */
     color: white;
     font-family: "Cal Sans", sans-serif;
     font-size: 16px;
@@ -32,7 +32,7 @@
   }
   
   .cine-button:hover {
-    background-color: #a52a2a; /* tono más claro al pasar el mouse */
+    background-color: #bb2020; /* tono más claro al pasar el mouse */
     transform: scale(1.05);
   }
   

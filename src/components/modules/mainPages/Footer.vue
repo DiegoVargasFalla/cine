@@ -26,7 +26,7 @@
   
   <style scoped>
   .container-footer {
-    background-color: #8e0b0b;
+    background-color: #a40808;
     color: white;
     width: 100%;
     padding: 2rem 1rem;

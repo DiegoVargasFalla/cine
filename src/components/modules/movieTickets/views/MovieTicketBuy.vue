@@ -1,12 +1,10 @@
 <template>
-    <Header></Header>
     <div class="container-buy-tickets">
         <div class="container-second">
             <div class="container-screen">
                 <div class="screen"></div>
             </div>
             <div class="container-sections-chair">
-                <div class="container-left"></div>
                 <div class="container-center">
                     <div class="container-chair-1">
                         <ChairChoice
@@ -17,8 +15,8 @@
                         :num="item.num"
                         :available="item.available"
                         ></ChairChoice>
-                </div>
-                <div class="container-chair-2">
+                    </div>
+                    <div class="container-chair-2">
                         <ChairChoice
                         v-for="(item, index) in chairList2"
                         :key="index"
@@ -27,8 +25,8 @@
                         :num="item.num"
                         :available="item.available"
                         ></ChairChoice>
-                </div>
-                <div class="container-chair-3">
+                    </div>
+                    <div class="container-chair-3">
                         <ChairChoice
                         v-for="(item, index) in chairList3"
                         :key="index"
@@ -37,18 +35,23 @@
                         :num="item.num"
                         :available="item.available"
                         ></ChairChoice>
-                </div>
+                    </div>
                 </div>
                 <div class="container-right">
+                    <div class="container-car-buy">
+                        <BuyCar></BuyCar>
+                    </div>
                     <div class="container-indications">
                         <div class="unavalible-chair content-per-indication">
                             <ChairChoice
+                            :proof="true"
                             ></ChairChoice>
                             <span>No disponnible</span>
                         </div>
                         <div class="avalible-chair content-per-indication">
                             <ChairChoice
                             :available="true"
+                            :proof="true"
                             ></ChairChoice>
                             <span>Disponnible</span>
                         </div>
@@ -56,6 +59,7 @@
                             <ChairChoice
                             :available="true"
                             :exaple="true"
+                            :proof="true"
                             ></ChairChoice>
                             <span>Seleccionado</span>
                         </div>
@@ -63,14 +67,14 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="container-three">
-        </div> -->
     </div>
 </template>
 
 <script setup>
-import Header from '../mainPages/Header.vue';
+import Header from '../../mainPages/Header.vue';
 import ChairChoice from './ChairChoice.vue';
+import Footer from '../../mainPages/Footer.vue';
+import BuyCar from './BuyCar.vue';
 
 const chairList1 = [
   { id: 1, row: 'A', num: 1, available: false },
@@ -159,7 +163,7 @@ const chairList3 = [
 
 .container-buy-tickets {
     position: relative;
-    background-color: #12100D;
+    /* background-color: #12100D; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,14 +173,12 @@ const chairList3 = [
 
 .container-second {
     position: relative;
-    /* background-color: rgb(45, 42, 42); */
+    background-color: rgb(45, 42, 42);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
     width: 100%;
-    margin-top: 50px;
 }
 
 .container-three {
@@ -194,9 +196,10 @@ const chairList3 = [
     position: relative;
     /* background-color: gray; */
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: center;
-    height: 20%;
+    margin-top: 60px;
+    height: 25vh;
     width: 80%;
 }
 
@@ -206,7 +209,9 @@ const chairList3 = [
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80%;
+    /* flex-direction: column; */
+    height: 80vh;
+    /* padding: 10px 0; */
     width: 100%;
 }
 
@@ -225,10 +230,11 @@ const chairList3 = [
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 40px;
+    justify-content: end;
+    gap: 60px;
     height: 100%;
-    width: 50%;
+    width: 75%;
+    padding-right: 20px;
 }
 
 .container-right {
@@ -236,9 +242,13 @@ const chairList3 = [
     /* background-color: gray; */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    flex-direction: column;
     height: 100%;
     width: 25%;
+    gap: 25px;
+    padding: 10px 0;
+    margin-right: 15px;
 }
 
 .container-indications {
@@ -246,16 +256,19 @@ const chairList3 = [
     position: relative;
     display: flex;
     align-items: start;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
+    height: 50%;
+    width: 100%;
     gap: 10px;
 }
 
 .content-per-indication {
     position: relative;
     display: flex;
-    /* justify-content: start; */
+    justify-content: start;
     align-items: center;
+    width: 100%;
     gap: 10px;
 
     font-family: 'Roboto', sans-serif;
@@ -271,8 +284,8 @@ const chairList3 = [
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(8, minmax(0, 1fr));
-    column-gap: 15px;
-    row-gap: 6px;
+    column-gap: 20px;
+    row-gap: 8px;
 }
 
 .container-chair-2 {
@@ -283,8 +296,8 @@ const chairList3 = [
     grid-template-columns: repeat(5, minmax(0, 1fr));
     grid-template-rows: repeat(8, minmax(0, 1fr));
     gap: 6px;
-    column-gap: 15px;
-    row-gap: 6px;
+    column-gap: 20px;
+    row-gap: 8px;
 }
 
 .container-chair {
@@ -305,6 +318,40 @@ const chairList3 = [
     transform: perspective(200px) rotateX(-8deg);
     box-shadow: 5px 5px 10px whitesmoke,
                 -5px -5px 12px whitesmoke;
+}
+
+.container-car-buy {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: orange; */
+    height: 50%;
+    width: 100%;
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 1150px) {
+    .container-sections-chair {
+        flex-direction: column;
+    }
+    .container-right {
+        display: none;
+    }
+    .container-center {
+        justify-content: center;
+        width: 85%;
+        gap: 44px;
+        /* margin-top: -100px; */
+    }
+    .container-sections-chair {
+        padding: 2px;
+    }
+    .container-chair-1,
+    .container-chair-2,
+    .container-chair-3 {
+        column-gap: 37px;
+    }
 }
 
 </style>
