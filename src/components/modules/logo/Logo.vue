@@ -1,15 +1,18 @@
 <template>
-    <div class="content-without-pading">
-        <a href="/" class="link"></a>
+    <RouterLink to="/" class="content-without-pading">
+        <!-- <a href="/" class="link"></a> -->
         <div class="container-icon-teatro">
         </div>
         <div class="container-title-teatro">
             <h1 class="text-title">Cine Belgrano</h1>
         </div>
-    </div>
+    </RouterLink>
 </template>
 
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router';
+
+</script>
 
 <style scoped>
 
@@ -31,6 +34,7 @@
     justify-content: start;
     margin-left: 30px;
     gap: 10px;
+    text-decoration: none;
 }
 
 .container-icon-teatro {
