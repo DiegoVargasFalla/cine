@@ -91,7 +91,7 @@ const clickChair = () => {
     left: 3px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 700px) {
     .container-component-chair {
         height: auto;
         width: auto;

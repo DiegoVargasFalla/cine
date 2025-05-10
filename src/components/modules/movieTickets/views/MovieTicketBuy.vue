@@ -342,7 +342,6 @@ const chairList3 = [
         justify-content: center;
         width: 85%;
         gap: 44px;
-        /* margin-top: -100px; */
     }
     .container-sections-chair {
         padding: 2px;
