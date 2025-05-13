@@ -334,13 +334,6 @@ const chairList3 = [
     order: 2;
 }
 
-/* .container-proof {
-    position: relative;
-    height: 500px;
-    width: 600px;
-    background-color: red;
-} */
-
 @media screen and (max-width: 1150px) {
     .container-sections-chair {
         flex-direction: column;

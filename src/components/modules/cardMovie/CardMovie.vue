@@ -198,4 +198,10 @@ function getRunTimeMovie() {
     color: yellow;
 }
 
+@media screen and (max-width: 500px) {
+    .container-card {
+        width: 175px;
+    }
+}
+
 </style>
