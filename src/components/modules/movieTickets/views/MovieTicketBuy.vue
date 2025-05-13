@@ -65,6 +65,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="container-proof"></div>
             </div>
         </div>
     </div>
@@ -74,7 +75,7 @@
 import Header from '../../mainPages/Header.vue';
 import ChairChoice from './ChairChoice.vue';
 import Footer from '../../mainPages/Footer.vue';
-import BuyCar from './BuyCar.vue';
+import BuyCar from './BuyCard.vue';
 
 const chairList1 = [
   { id: 1, row: 'A', num: 1, available: false },
@@ -210,7 +211,7 @@ const chairList3 = [
     align-items: center;
     justify-content: center;
     /* flex-direction: column; */
-    height: 80vh;
+    /* height: 80vh; */
     /* padding: 10px 0; */
     width: 100%;
 }
@@ -244,7 +245,7 @@ const chairList3 = [
     align-items: center;
     justify-content: start;
     flex-direction: column;
-    height: 100%;
+    min-height: 40vh;
     width: 25%;
     gap: 25px;
     padding: 10px 0;
@@ -261,6 +262,7 @@ const chairList3 = [
     height: 50%;
     width: 100%;
     gap: 10px;
+    order: 1;
 }
 
 .content-per-indication {
@@ -329,19 +331,31 @@ const chairList3 = [
     height: 50%;
     width: 100%;
     margin-top: 25px;
+    order: 2;
 }
+
+/* .container-proof {
+    position: relative;
+    height: 500px;
+    width: 600px;
+    background-color: red;
+} */
 
 @media screen and (max-width: 1150px) {
     .container-sections-chair {
         flex-direction: column;
     }
     .container-right {
-        display: none;
+        display: flex;
+        width: 90%;
+        gap: 0px;
     }
     .container-center {
         justify-content: center;
         width: 85%;
         gap: 44px;
+        /* margin-top: 120px; */
+        padding: none;
     }
     .container-sections-chair {
         padding: 2px;
@@ -350,6 +364,9 @@ const chairList3 = [
     .container-chair-2,
     .container-chair-3 {
         column-gap: 37px;
+    }
+    .container-indications {
+        margin-top: 30px;
     }
 }
 

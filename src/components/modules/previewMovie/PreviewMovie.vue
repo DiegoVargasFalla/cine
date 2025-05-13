@@ -63,7 +63,6 @@ const onCLikRouterLink = () => {
     /* height: 80%; */
     aspect-ratio: 16 / 9;
     width: 70%;
-    z-index: 250;
     border-radius: 40px;
     overflow: hidden;
     border: solid 0.5px white;

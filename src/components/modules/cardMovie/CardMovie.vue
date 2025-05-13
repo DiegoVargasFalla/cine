@@ -89,7 +89,7 @@ function getRunTimeMovie() {
     justify-content: center;
     flex-direction: column;
     height: 340px;
-    width: 180px;  /* here it had width 180px for cellphones*/
+    width: 200px;  /* here it had width 180px for cellphones*/
     border-radius: 8px;
     box-shadow: 2px 0px 5px black;
     overflow: hidden;

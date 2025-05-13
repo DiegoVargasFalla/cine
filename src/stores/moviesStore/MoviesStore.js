@@ -127,21 +127,16 @@ export const useMoviesStore = defineStore('moviesStore', {
             this.isIdMovie = value;
         },
         getOptionsRequest() {
-            const options = {
-                headers: {
-                    accept: 'application/json',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNzIyZGY0ZGNjZTYwZjdlMWMyNWI5ZjFkOGVkMTQ2OSIsIm5iZiI6MTc0NjIxMDUzMC43NDQsInN1YiI6IjY4MTUwZWUyMzkwMDJlODMxZWEyMGM5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jYGwvWhEj_Iih3WiUZNQHJqF_tRDvDpurOca0KdrnYQ'
-                }
-            }
-            return options
+            const API_KEY = 'f722df4dcce60f7e1c25b9f1d8ed1469';
+            const url = `https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1&api_key=${API_KEY}`;
+
+            return url
         },
         async getMoviesInfo() {
             const auth = this.getOptionsRequest();
 
             try {
-                const response = await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1', 
-                    auth
-                );
+                const response = await axios.get(auth);
                 const data = response.data
 
                 if(data) {
@@ -151,8 +146,8 @@ export const useMoviesStore = defineStore('moviesStore', {
                     this.setIsIdMovie(true);
                 }
                 
-            } catch (Error) {
-                console.log(Error.status + ", Error ehit request movie")
+            } catch (error) {
+                console.log(error.response?.status + ", Error ehit request movie")
             }
             
         },
@@ -161,9 +156,7 @@ export const useMoviesStore = defineStore('moviesStore', {
             const auth = this.getOptionsRequest();
 
             try {
-                const response = await axios.get('https://api.themoviedb.org/3/genre/movie/list?language=es-ES', 
-                    auth
-                );
+                const response = await axios.get(auth);
 
                 const data = response.data;
                 if(data) {
@@ -179,9 +172,7 @@ export const useMoviesStore = defineStore('moviesStore', {
             const auth = this.getOptionsRequest()
 
             try {
-                const response = await axios.get(`https://api.themoviedb.org/3/movie/${idMovie}/credits?language=es-ES`, 
-                    auth
-                );
+                const response = await axios.get(auth);
 
                 const data = response.data
 
@@ -206,9 +197,7 @@ export const useMoviesStore = defineStore('moviesStore', {
             const auth = this.getOptionsRequest();
             try {
                 console.log("in request time");
-                const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=es-ES`, 
-                    auth
-                )
+                const response = await axios.get(auth);
                 const data = response.data;
                 if (data) {
                     this.setTime(data.runtime);

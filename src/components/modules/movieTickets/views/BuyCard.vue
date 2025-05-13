@@ -1,5 +1,5 @@
 <template>
-    <div class="container-car">
+    <div class="container-card">
         <div class="container-title">
             <h2 class="title-resume">Resumen de compra</h2>
             <span class="span-total-seats">Total asientos: {{ chairStore.getSeatTotal() }}</span>
@@ -36,12 +36,13 @@ const total = computed(() => chairStore.getTotal());
 </script>
 
 <style scoped>
-.container-car {
+.container-card {
   background-color: #1e1e1e;
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   border-radius: 12px;
   border: 1px solid #616060;
@@ -170,6 +171,10 @@ const total = computed(() => chairStore.getTotal());
         flex-direction: column;
         align-items: start;
         gap: 3px;
+    }
+    .container-card {
+      min-height: 50%;
+      max-height: 300px;
     }
 }
 

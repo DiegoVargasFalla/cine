@@ -1,5 +1,5 @@
 <template>
-    <div @click="clickChair" class="container-component-chair" :class="{'no-available': !available}" id="chairId">
+    <div @click="clickChair" class="container-component-chair" :class="{'no-available': !available, 'container-proof': proof}" id="chairId">
         <i v-if="selected" class="fa-solid fa-circle-check icon-check"></i>
         <i v-if="exaple" class="fa-solid fa-circle-check icon-check"></i>
         <span>{{ row }}</span>
@@ -96,6 +96,10 @@ const clickChair = () => {
         height: auto;
         width: auto;
         padding: 2px 15px;
+    }
+    .container-proof {
+        height: 40px;
+        width: 42px;
     }
 }
 

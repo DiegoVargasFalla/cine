@@ -27,14 +27,21 @@ const showLayer = computed(() => moviesStore.getLayer());
 
 .container-main {
     position: relative;
-    /* background-color: black; */
+    /* background-color: green; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;   
-    min-height: 100%;
+    height: 100%;
     width: 100%;
+}
+
+.proof-now {
+    position: relative;
+    height: 50vh;
+    width: 100vw;
+    background-color: red;
 }
 
 

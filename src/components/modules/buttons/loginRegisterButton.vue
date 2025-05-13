@@ -6,7 +6,6 @@
   </template>
   
   <script setup>
-  // No se requiere JS en este caso
   </script>
   
   <style scoped>

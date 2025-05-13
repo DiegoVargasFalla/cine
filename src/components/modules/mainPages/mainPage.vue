@@ -94,12 +94,12 @@ const promotionsImg = [
 
 .container-main-page {
     position: relative;
-    /* background-color: black; */
+    /* background-color: green; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* height: 76vh; */
+    /* height: 100%; */
     width: 100%;
     margin-top: 10vh;
     background-position: center;
