@@ -43,6 +43,7 @@ const total = computed(() => chairStore.getTotal());
   flex-direction: column;
   padding: 1rem;
   min-height: 100%;
+  max-height: 220px;
   width: 100%;
   border-radius: 12px;
   border: 1px solid #616060;

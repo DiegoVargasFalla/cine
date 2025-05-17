@@ -174,7 +174,7 @@ const chairList3 = [
 
 .container-second {
     position: relative;
-    background-color: rgb(45, 42, 42);
+    /* background-color: #12100D; */
     display: flex;
     align-items: center;
     justify-content: center;
