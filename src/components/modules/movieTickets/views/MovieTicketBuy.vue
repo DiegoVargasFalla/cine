@@ -210,9 +210,7 @@ const chairList3 = [
     display: flex;
     align-items: center;
     justify-content: center;
-    /* flex-direction: column; */
-    /* height: 80vh; */
-    /* padding: 10px 0; */
+    margin-bottom: 3lh;
     width: 100%;
 }
 
