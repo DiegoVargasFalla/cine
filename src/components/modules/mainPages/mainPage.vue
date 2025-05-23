@@ -113,19 +113,19 @@ const url = 'https://image.tmdb.org/t/p/w300/'
 const promotionsImg = [
   {
     img: promoCine1,
-    color: 'red'
+    color: 'gray'
   },
   {
     img: promoCine2,
-    color: 'green'
+    color: 'gray'
   },
   {
     img: promoCine3,
-    color: 'orange'
+    color: 'gray'
   },
   {
     img: promoCine4,
-    color: 'yellow'
+    color: 'gray'
   },
 ]
 

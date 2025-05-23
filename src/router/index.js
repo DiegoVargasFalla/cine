@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import MovieTicketBuy from '@/components/modules/movieTickets/views/MovieTicketBuy.vue'
 import MainPage from '@/components/modules/mainPages/mainPage.vue'
+import Login from '@/components/modules/mainPages/Login.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/tickets',
       name: 'tickets',
       component: MovieTicketBuy,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
   ],
 })
