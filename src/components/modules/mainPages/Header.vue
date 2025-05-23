@@ -10,10 +10,10 @@
             <div class="container-sections">
                 <div class="cont-items">
                     <itemHeader
-                        text="Peliculas"
+                        text="PELICULAS"
                     ></itemHeader>
                     <itemHeader
-                        text="Promociones"
+                        text="PROMOCIONES"
                     ></itemHeader>
                 </div>
                 <div class="container-buttons-auth">

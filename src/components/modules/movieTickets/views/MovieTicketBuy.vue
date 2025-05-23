@@ -1,5 +1,5 @@
 <template>
-    <div class="container-buy-tickets">
+    <div class="container-buy-tickets" id="container-buy-tickets-id">
         <div class="container-second">
             <div class="container-screen">
                 <div class="screen"></div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="container-right">
                     <div class="container-car-buy">
-                        <BuyCar></BuyCar>
+                        <BuyCard></BuyCard>
                     </div>
                     <div class="container-indications">
                         <div class="unavalible-chair content-per-indication">
@@ -72,10 +72,16 @@
 </template>
 
 <script setup>
-import Header from '../../mainPages/Header.vue';
+// import Header from '../../mainPages/Header.vue';
 import ChairChoice from './ChairChoice.vue';
-import Footer from '../../mainPages/Footer.vue';
-import BuyCar from './BuyCard.vue';
+// import Footer from '../../mainPages/Footer.vue';
+import BuyCard from './BuyCard.vue';
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0;
+})
 
 const chairList1 = [
   { id: 1, row: 'A', num: 1, available: false },

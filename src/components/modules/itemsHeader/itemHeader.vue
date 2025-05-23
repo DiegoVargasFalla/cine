@@ -12,7 +12,6 @@ const props = defineProps({
     text: String
 })
 
-
 </script>
 
 <style scoped>
@@ -38,10 +37,10 @@ const props = defineProps({
 }
 
 .text-item {
-    font-family: "Cal Sans", sans-serif;
+    font-family: "Oswald", sans-serif;
     font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-weight: 600;
+    letter-spacing: 1px;
     color: white;
 }
 

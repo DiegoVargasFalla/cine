@@ -1,14 +1,20 @@
 <template>
-    <span class="li-per-gender">{{ gender }},</span>
+    <span class="li-per-gender">{{ gender }} <strong v-if="last">,</strong> <strong v-else>.</strong></span>
 </template>
 
 <script setup>
+import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
+import { Number } from 'core-js';
+import { computed } from 'vue';
+
+const moviesStore = useMoviesStore();
 
 const props = defineProps({
     id: String,
-    gender: String 
+    gender: String,
 })
 
+const last = computed(() => moviesStore.getListGendersPerMovie().length === Number(props.id) ? false : true)
 </script>
 
 <style scoped>
@@ -19,7 +25,7 @@ const props = defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Inter", sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 
 </style>

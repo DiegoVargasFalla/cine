@@ -3,12 +3,12 @@
 </template>
 
 <script setup>
-
-
+import { ref } from 'vue';
 
 const props = defineProps({
     img: String,
-    color: String
+    color: String,
+    listImages: Array
 })
 
 

@@ -61,11 +61,18 @@ const onClick = async () => {
 function extractGenders() {
     const listGendersMovie = props.gender;
     const newListGenders = []
+    let idGender = 1;
 
     listGendersMovie.forEach(g => {
         moviesStore.getAllListGenders().forEach(gender => {
             if (g === gender.id) {
-                newListGenders.push(gender.name);
+                newListGenders.push(
+                    {
+                        id: idGender,
+                        name: gender.name
+                    }
+                );
+                idGender += 1;
             }
         })
     })
@@ -106,13 +113,13 @@ function getRunTimeMovie() {
 .container-card:hover {
     transform: scale(1.04) translateY(-3px);
     cursor: pointer;
-    box-shadow: 3px 3px 5px rgba(110, 103, 103, 0.764);
+    box-shadow: 2px 2px 4px rgb(55, 53, 53);
 }
 
 .container-img {
     position: relative;
     background-color: gray;
-    height: 85%;
+    height: 82%;
     width: 100%;
     background-size: 100% 100%;
     display: flex;
@@ -127,11 +134,11 @@ function getRunTimeMovie() {
     /* background-color: rgb(53, 50, 50); */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
-    height: 15%;
+    height: 18%;
     width: 100%;
-    padding: 5px;
+    padding: 0px 2px;
 }
 
 .container-title {
@@ -144,11 +151,11 @@ function getRunTimeMovie() {
 }
 
 .text-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.18em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8lh;
     text-transform: uppercase;
     color: whitesmoke;
-    font-weight: 500;
+    font-weight: 600;
     /* letter-spacing: 0px; */
 }
 

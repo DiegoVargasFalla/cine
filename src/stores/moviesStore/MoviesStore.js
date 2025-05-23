@@ -153,15 +153,15 @@ export const useMoviesStore = defineStore('moviesStore', {
         },
         async getGenders() {
 
-            const auth = this.getOptionsRequest();
+            const auth = 'https://api.themoviedb.org/3/genre/movie/list?api_key=f722df4dcce60f7e1c25b9f1d8ed1469&language=es-ES';
 
             try {
                 const response = await axios.get(auth);
 
                 const data = response.data;
                 if(data) {
-                    console.log(data.genres);
                     this.setAllListGenders(data.genres);
+                    console.log(this.getAllListGenders());
                 }
 
             } catch(Error) {
@@ -169,7 +169,7 @@ export const useMoviesStore = defineStore('moviesStore', {
             }
         },
         async getCredits(idMovie) {
-            const auth = this.getOptionsRequest()
+            const auth = `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=${'f722df4dcce60f7e1c25b9f1d8ed1469'}&language=es-ES`;
 
             try {
                 const response = await axios.get(auth);
@@ -194,7 +194,7 @@ export const useMoviesStore = defineStore('moviesStore', {
         },
         async getTimeMovie(id) {
             console.log("-> in time");
-            const auth = this.getOptionsRequest();
+            const auth = `https://api.themoviedb.org/3/movie/${id}?api_key=${'f722df4dcce60f7e1c25b9f1d8ed1469'}&language=es-ES`;
             try {
                 console.log("in request time");
                 const response = await axios.get(auth);

@@ -10,7 +10,9 @@
                         <li class="text-li"><strong class="font-text-strong">Genero:</strong>
                         <itemGender
                             v-for="(item, index) in moviesStore.getListGendersPerMovie()"
-                            :gender="item"
+                            :key="index"
+                            :id="String(item.id)"
+                            :gender="item.name"
                         ></itemGender>
                         </li>
                         <li class="text-li"><strong class="font-text-strong">Duración:</strong>{{ moviesStore.getTime() }} min</li>
@@ -40,14 +42,13 @@ const previewMovieStore = usePreviewSotre();
 
 const url = computed(() =>  'https://image.tmdb.org/t/p/w500' + moviesStore.getBackdropPath());
 
-const onClick = () => {
-    console.log("-> click en preview button");
-}
-
 const onCLikRouterLink = () => {
-    console.log('-> click en routerLink');
     moviesStore.setLayer(false);
 }
+
+const last = computed(() => {
+    const numGenders = moviesStore.getListGendersPerMovie().length;
+})
 
 </script>
 
@@ -85,7 +86,7 @@ const onCLikRouterLink = () => {
 
 .container-info-preview-moview {
     position: relative;
-    background: linear-gradient(to right, rgb(0, 0, 0) , rgba(0, 0, 0, 0.751), rgba(0, 0, 0, 0.514),transparent, transparent);
+    background: linear-gradient(to right, rgb(0, 0, 0) , rgba(0, 0, 0, 0.751), rgba(0, 0, 0, 0.623), transparent, transparent);
     display: flex;
     align-items: center;
     justify-content: end;
@@ -136,12 +137,12 @@ const onCLikRouterLink = () => {
 }
 
 .title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-size: 4vw;
     text-transform: uppercase;
     color: whitesmoke;
-    font-weight: 700;
-    letter-spacing: 3px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .details {
@@ -160,14 +161,15 @@ const onCLikRouterLink = () => {
     margin-top: -8px;
     font-family: "Inter", sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .font-text-strong {
-    font-family: "Montserrat", sans-serif;
-    font-size: 16px;
+    font-family: "Oswald", sans-serif;
+    font-size: 17px;
     color: white;
     font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .text-li {
@@ -175,10 +177,11 @@ const onCLikRouterLink = () => {
     display: flex;
     align-items: center;
     justify-content: left;
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-    font-weight: 300;
+    font-family: "Oswald", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
     gap: 8px;
+    letter-spacing: 0.5px;
 }
 
 .container-descripton {
@@ -217,8 +220,8 @@ const onCLikRouterLink = () => {
 }
 
 .text-buy {
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
+    font-family: "Oswald", sans-serif;
+    font-size: 25px;
     color: white;
     font-weight: 700;
     text-decoration: none;

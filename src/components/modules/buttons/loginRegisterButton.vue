@@ -1,7 +1,7 @@
 <template>
     <div class="button-container">
-      <button class="cine-button">Login</button>
-      <button class="cine-button">Register</button>
+      <button class="cine-button">INICIAR SESSIÓN</button>
+      <!-- <button class="cine-button">Register</button> -->
     </div>
   </template>
   
@@ -18,11 +18,11 @@
   .cine-button {
     background-color: #a40808; /* bordo */
     color: white;
-    font-family: "Cal Sans", sans-serif;
+    font-family: "Oswald", sans-serif;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 600;
     letter-spacing: 2px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
