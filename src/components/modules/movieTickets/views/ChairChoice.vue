@@ -32,7 +32,6 @@ const clickChair = () => {
             selected.value = true;
             chairStore.addChair(seat);
             chairStore.calculateTotal();
-            console.log(chairStore.getListSeat());
         } else {
             selected.value = false;
             chairStore.deleteChair(seat.id);

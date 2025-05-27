@@ -7,7 +7,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 
-const click = () => console.log("click");
 
 </script>
   
@@ -29,7 +28,6 @@ const click = () => console.log("click");
   font-weight: 600;
   letter-spacing: 2px;
   padding: 0.5rem 1rem;
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;

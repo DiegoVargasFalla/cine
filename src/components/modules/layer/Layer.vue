@@ -18,7 +18,6 @@ const showPreviewMovie = previewMovie.getShowPreviewMovie();
 const onClick = () => {
     moviesStore.setLayer(false);
     moviesStore.setBackdropPath("");
-    console.log("-> click en layer");
 }
 
 </script>

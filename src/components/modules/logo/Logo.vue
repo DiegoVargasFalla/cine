@@ -58,7 +58,6 @@ import { RouterLink } from 'vue-router';
     align-items: center;
     justify-content: center;
     height: 100%;
-    /* width: 50%; */
 }
 
 .text-title {
@@ -69,5 +68,10 @@ import { RouterLink } from 'vue-router';
     color: white;
 }
 
+@media screen and (max-width: 600px) {
+    .text-title {
+        font-size: 5vw;
+    }   
+}
 
 </style>

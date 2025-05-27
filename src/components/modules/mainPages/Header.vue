@@ -16,9 +16,15 @@
                         text="PROMOCIONES"
                     ></itemHeader>
                 </div>
-                <div class="container-buttons-auth">
+                <div v-if="!storeRegister.registerUser" class="container-buttons-auth">
                     <loginRegisterButton></loginRegisterButton>
                 </div>
+            </div>
+            <div v-if="!storeRegister.registerUser" class="container-button-login-small">
+                <RouterLink to="/login" class="button-text-small">Iniciar</RouterLink>
+            </div>
+            <div v-if="storeRegister.registerUser" class="container-firs-letter">
+                {{ storeRegister.firstLeter }}
             </div>
         </div>
     </div>
@@ -28,8 +34,24 @@
 import Logo from '../logo/Logo.vue';
 import itemHeader from '../itemsHeader/itemHeader.vue';
 import loginRegisterButton from '../buttons/loginRegisterButton.vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useStoreLogin } from '../movieTickets/store/loginStore/loginStore';
+import { useStoreRegister } from '../movieTickets/store/loginStore/registerStore';
 
+const loginStore = useStoreLogin();
+const storeRegister = useStoreRegister();
 
+onMounted(() => {
+    const registerUser = localStorage.getItem('register');
+    const firstLetter = localStorage.getItem('firstLetter');
+
+    if (registerUser === 'true') {
+        storeRegister.registerUser = true;
+    } if(firstLetter){
+        storeRegister.firstLeter = firstLetter;
+    }
+})
 
 document.addEventListener('scroll', () => {
     const header = document.getElementById('container-header')
@@ -41,7 +63,6 @@ document.addEventListener('scroll', () => {
     }
 
 })
-
 
 </script>
 
@@ -119,6 +140,35 @@ document.addEventListener('scroll', () => {
     border-radius: 10px;
 }
 
+.container-button-login-small {
+    position: relative;
+    background-color: #a40808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: .5vw 3vw;
+    margin-right: 3vw;
+    border: solid 1px white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-text-small {
+    text-decoration: none;
+    color: white;
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+}
+
+.button-text-small:hover {
+  background-color: #bb2020;
+  transform: scale(1.05);
+}
+
+.button-text-small:active {
+  transform: scale(0.97);
+}
+
 @media screen and (max-width: 1350px){
     .container-sections {
         display: none;
@@ -131,7 +181,6 @@ document.addEventListener('scroll', () => {
     .container-main-logo-sections {
         width: 100%;
         padding-left: 20px;
-        /* gap: 25px; */
     }
 
     .container-icon-menu {
@@ -141,6 +190,27 @@ document.addEventListener('scroll', () => {
     .container-header {
         width: 95%;
         height: 9vh;
+    }
+}
+
+.container-firs-letter {
+    background-color: #a40808;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    padding: 0 2vh;
+    border-radius: 50%;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 1350px) {
+    .container-button-login-small {
+        display: none;
     }
 }
 

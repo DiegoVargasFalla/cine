@@ -140,7 +140,7 @@ export const useMoviesStore = defineStore('moviesStore', {
                 const data = response.data
 
                 if(data) {
-                    console.log(data.results);
+                    // console.log(data.results);
                     this.setListMovie(data.results)
                     this.getAllMovieIds();
                     this.setIsIdMovie(true);
@@ -161,7 +161,7 @@ export const useMoviesStore = defineStore('moviesStore', {
                 const data = response.data;
                 if(data) {
                     this.setAllListGenders(data.genres);
-                    console.log(this.getAllListGenders());
+                    // console.log(this.getAllListGenders());
                 }
 
             } catch(Error) {
@@ -177,7 +177,7 @@ export const useMoviesStore = defineStore('moviesStore', {
                 const data = response.data
 
                 if (data) {
-                    console.log('-> in info credits');
+
                     this.setListCredits(data.crew);
                     this.getListCredits().forEach(person => {
                         if(person.job === 'Director') {
@@ -193,10 +193,9 @@ export const useMoviesStore = defineStore('moviesStore', {
             }
         },
         async getTimeMovie(id) {
-            console.log("-> in time");
+
             const auth = `https://api.themoviedb.org/3/movie/${id}?api_key=${'f722df4dcce60f7e1c25b9f1d8ed1469'}&language=es-ES`;
             try {
-                console.log("in request time");
                 const response = await axios.get(auth);
                 const data = response.data;
                 if (data) {

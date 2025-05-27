@@ -1,7 +1,7 @@
 <template>
     <div class="container-main-page">
       <div class="container-first-promotions">
-        <div class="container-promotions" id="container-scroll">
+        <div ref="carousel" @scroll="handleScroll" class="container-promotions" id="container-scroll">
           <Promotion
           v-for="(item, index) in promotionsImg"
           :key="index"
@@ -44,87 +44,84 @@ import CardMovie from '../cardMovie/CardMovie.vue';
 import Promotion from '../promotions/Promotion.vue';
 
 
-import promoCine1 from '@/assets/img/promoCine.jpg'
-import promoCine2 from '@/assets/img/promoCine2.jpg'
-import promoCine3 from '@/assets/img/promoCine3.jpg'
-import promoCine4 from '@/assets/img/promoCine4.jpg'
+import promo2 from '@/assets/img/promo2.png'
+import promo3 from '@/assets/img/promo3.png'
+import promo4 from '@/assets/img/promo4.png'
+import promo5 from '@/assets/img/promo5.png'
+import promo6 from '@/assets/img/promo6.png'
 
 import { useMoviesStore } from '@/stores/moviesStore/MoviesStore';
-import { computed, onMounted, ref } from 'vue'
-
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useStoreRegister } from '../movieTickets/store/loginStore/registerStore';
+const storeRegister = useStoreRegister();
 const moviesStore = useMoviesStore();
 
 moviesStore.getMoviesInfo();
 moviesStore.getGenders();
 
 const currentImg = ref(0);
-const scroll = ref(0);
+const carousel = ref(null);
 
 onMounted(() => {
-  const container = document.getElementById('container-scroll');
-  container.addEventListener('scroll', handleScroll)
+  window.addEventListener('resize', handleResize);
+  storeRegister.forbidden = false;
 })
 
-function handleScroll(event) {
-  const scroll = event.target.scrollLeft;
+onUnmounted(() => {
+  window.removeEventListener('reisize', handleResize);
+})
 
-  console.log("-> scroll: "  + scroll)
-  if (scroll % 1228.800048828125 === 0) {
-    const valor = Math.trunc(scroll / 1200);
-    console.log("valor: " + scroll / 1200);
-    currentImg.value = valor
-  } 
+const handleScroll = () =>  {
+  const scrollLeft = carousel.value.scrollLeft;
+  const itemWidth = carousel.value.offsetWidth;
+  const index = Math.round(scrollLeft / itemWidth)
+  currentImg.value = index;
+}
+
+const handleResize = () => {
+  handleScroll();
 }
 
 const prev = () => {
-  const containerScroll = document.getElementById('container-scroll');
-
-  if(scroll.value > 0 && scroll.value <= (promotionsImg.length - 1) * 1228.800048828125) {
-
-    scroll.value -= 1228.800048828125;
-    containerScroll.scrollLeft = scroll.value;
-    currentImg.value = currentImg.value -1;
+  if (!(currentImg.value === 0)) {
+    currentImg.value -= 1;
+    carousel.value.scrollLeft = currentImg.value * carousel.value.offsetWidth;
   }
 }
 
 const next = () => {
-
-  const containerScroll = document.getElementById('container-scroll');
-
-  if(scroll.value >= 0 && scroll.value < (promotionsImg.length - 1) * 1228.800048828125) {
-
-    scroll.value += 1228.800048828125;
-    containerScroll.scrollLeft = scroll.value;
-    currentImg.value = currentImg.value + 1;
-    console.log("-> scroll: " + scroll.value)
-    console.log("-> num img: " + currentImg.value)
+  if (!(currentImg.value === promotionsImg.length -1)) {
+    currentImg.value += 1;
+    carousel.value.scrollLeft = currentImg.value * carousel.value.offsetWidth;
   }
 }
 
-
 const goTo = (index) => {
-  const containerScroll = document.getElementById('container-scroll');
+  // const containerScroll = document.getElementById('container-scroll');
   currentImg.value = index;
-  scroll.value = index * 1200;
-  containerScroll.scrollLeft = scroll.value;
+  carousel.value.scrollLeft = index * carousel.value.offsetWidth;
 }
 
 const url = 'https://image.tmdb.org/t/p/w300/'
 const promotionsImg = [
   {
-    img: promoCine1,
+    img: promo2,
     color: 'gray'
   },
   {
-    img: promoCine2,
+    img: promo3,
     color: 'gray'
   },
   {
-    img: promoCine3,
+    img: promo4,
     color: 'gray'
   },
   {
-    img: promoCine4,
+    img: promo5,
+    color: 'gray'
+  },
+  {
+    img: promo6,
     color: 'gray'
   },
 ]
@@ -137,7 +134,7 @@ const promotionsImg = [
   position: relative;
   background-color: #12100D;
   height: 50vh;
-  width: 80%;
+  width: 70%;
   border-radius: 30px;
 }
 
@@ -254,5 +251,34 @@ const promotionsImg = [
 .active {
   background-color: white;
   transform: translateY(-6px);
+}
+
+@media screen and (max-width: 950px) {
+  .container-promotions {
+    height: 35vh;
+  }
+  .container-first-promotions {
+    height: 35vh;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .container-promotions {
+    height: 30vh;
+  }
+  .container-first-promotions {
+    height: 30vh;
+  }
+  .current-img-item {
+    width: 11vw;
+  }
+  .arrow {
+    padding: 2.5px 8px;
+  }
+  .buttons-previus-next {
+    bottom: 10px;
+    right: 10px;
+    font-size: 15px;
+  }
 }
 </style>

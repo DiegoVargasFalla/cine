@@ -1,11 +1,19 @@
 <template>
   <div class="container-login" id="background-id">
-    <Form @submit="onSubmit" class="form">
+    <!-- <bubble
+      v-for="(item, index) in propsBuble"
+      :key="index"
+      :left="item.left"
+      :top="item.top"
+      :height="item.size"
+      :width="item.size"
+      ></bubble> -->
+    <Form @submit="onClickLogIn" class="form" id="form-id">
       <h1 class="title">Iniciar Sesión</h1>
-
       <div class="field">
         <label for="email">Correo electrónico</label>
         <Field
+          v-model="storeLogin.username"
           id="email"
           name="email"
           type="email"
@@ -19,8 +27,63 @@
         <label for="password">Contraseña</label>
         <div class="password-wrapper">
           <Field
+          v-model="storeLogin.password"
             :type="showPassword ? 'text' : 'password'"
             id="password"
+            name="password"
+            placeholder="••••••••"
+            class="input"
+          />
+          <button type="button" class="toggle-password" @click="togglePassword">
+            {{ showPassword ? 'O' : ' Φ' }}
+          </button>
+        </div>
+        <span v-if="storeRegister.forbidden" class="error-credential">Email o contraseña incorrecta</span>
+      </div>
+
+      <button type="submit" class="btn-submit">Entrar</button>
+
+      <div class="register-link">
+        ¿No tienes cuenta?
+        <span @click="changeLogin" to="/register">Regístrate aquí</span>
+      </div>
+    </Form>
+    <Form @submit="onClikcRegister" class="form-register" id="form-register-id">
+      <h1 class="title">Registrarse</h1>
+
+      <div class="field">
+        <label for="email">Correo electrónico</label>
+        <Field
+        v-model="storeRegister.email"
+          id="email-register"
+          name="email"
+          type="email"
+          placeholder="ejemplo@correo.com"
+          class="input"
+        />
+        <ErrorMessage name="email" class="error" />
+      </div>
+
+      <div class="field">
+        <label for="username">Nombre de usuario</label>
+        <Field
+        v-model="storeRegister.username"
+          id="username-register"
+          name="username"
+          type="text"
+          placeholder="Tu nombre de usuario"
+          class="input"
+        />
+        <ErrorMessage name="username" class="error" />
+      </div>
+
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <div class="password-wrapper">
+          <Field
+          v-model="storeRegister.password"
+            :type="showPassword ? 'text' : 'password'"
+            id="password-register"
             name="password"
             placeholder="••••••••"
             class="input"
@@ -32,11 +95,11 @@
         <ErrorMessage name="password" class="error" />
       </div>
 
-      <button type="submit" class="btn-submit">Entrar</button>
+      <button type="submit" class="btn-submit">Crear cuenta</button>
 
       <div class="register-link">
-        ¿No tienes cuenta?
-        <RouterLink to="/register">Regístrate aquí</RouterLink>
+        ¿Ya tienes cuenta?
+        <span @click="changeRegister" to="/login">Inicia sesión aquí</span>
       </div>
     </Form>
   </div>
@@ -46,17 +109,35 @@
 import { ref, onMounted } from 'vue'
 import { Form, Field, ErrorMessage, useForm } from 'vee-validate'
 import * as yup from 'yup'
-import { RouterLink } from 'vue-router'
+import bubble from '../bubbleLogin/bubble.vue'
+import { useStoreLogin } from '../movieTickets/store/loginStore/loginStore'
+import { useRouter } from 'vue-router'
+import { useStoreRegister } from '../movieTickets/store/loginStore/registerStore'
 
+const storeLogin = useStoreLogin();
+const storeRegister = useStoreRegister();
 const showPassword = ref(false)
+const router = useRouter();
 
 function togglePassword() {
   showPassword.value = !showPassword.value
 }
 
 onMounted(() => {
-  backgroundAnimation()
+  storeLogin.hiddeButtonLogin = false;
+  const listValues = [];
+    for (let i = 0; i < totalBubble; i++) {
+      listValues.push({
+        left: Math.floor(Math.random() * window.innerWidth),
+        top: Math.floor(Math.random() * window.innerHeight),
+        size: Math.random() * 30 + 10
+      })
+    }
+    propsBuble.value = listValues;
 })
+
+const totalBubble = 60;
+const propsBuble = ref([]);
 
 const schema = yup.object({
   email: yup.string().email('Correo inválido').required('Correo requerido'),
@@ -67,35 +148,62 @@ const { handleSubmit } = useForm({
   validationSchema: schema
 })
 
-const onSubmit = handleSubmit(values => {
-  console.log('Datos del formulario:', values)
-})
+const onClickLogIn = () => {
+  const email = localStorage.getItem('email')
+  const password = localStorage.getItem('password')
 
-function backgroundAnimation() {
-  const background = document.getElementById('background-id')
-  const num = 60
-
-  for (let i = 0; i <= num; i++) {
-    const randomX = Math.floor(Math.random() * window.innerWidth)
-    const randomY = Math.floor(Math.random() * window.innerHeight)
-    const randomSize = Math.random() * 30 + 10
-
-    const bubble = document.createElement('div')
-    bubble.classList.add('container-bubble')
-
-    Object.assign(bubble.style, {
-      position: 'absolute',
-      left: `${randomX}px`,
-      top: `${randomY}px`,
-      backgroundColor: '#a40808',
-      width: `${randomSize}px`,
-      height: `${randomSize}px`,
-      borderRadius: '50%',
-    })
-
-    background.appendChild(bubble)
+  if(email === storeLogin.username && password === storeLogin.password) {
+    storeLogin.username = "";
+    storeLogin.password = "";
+    storeRegister.forbidden = false;
+    storeRegister.firstLeter = localStorage.getItem('firstLetter')
+    router.push('/')
+  } else {
+    storeRegister.forbidden = true;
   }
 }
+
+const onClikcRegister = () => {
+  storeRegister.registerUser = true;
+  const name = storeRegister.username.charAt(0).toUpperCase();
+
+  localStorage.setItem('username', storeRegister.username);
+  localStorage.setItem('email', storeRegister.email);
+  localStorage.setItem('password', storeRegister.password);
+  localStorage.setItem('register', storeRegister.registerUser)
+  localStorage.setItem('firstLetter', name)
+
+  storeRegister.username = '';
+  storeRegister.email = '';
+  storeRegister.password = '';
+
+  changeRegister()
+  
+}
+
+
+const changeLogin = () => {
+  const formRegister = document.getElementById('form-register-id');
+  const formLogin = document.getElementById('form-id');
+  const display = window.getComputedStyle(formLogin).display;
+
+  if(display === 'block') {
+    formLogin.style.display = 'none';
+    formRegister.style.display = 'block'
+  }
+}
+
+const changeRegister = () => {
+  const formRegister = document.getElementById('form-register-id');
+  const formLogin = document.getElementById('form-id');
+  const display = window.getComputedStyle(formRegister).display;
+
+  if(display === 'block') {
+    formRegister.style.display = 'none';
+    formLogin.style.display = 'block';
+  }
+}
+
 </script>
 
 <style scoped>
@@ -107,18 +215,49 @@ function backgroundAnimation() {
   align-items: center;
   height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 
 .form {
-  background: #1c1b1a;
+  display: block;
+  background: #1c1b1a9d;
+  backdrop-filter: blur(7px);
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 0 15px #a40808a8;
-  width: 30%;
+  /* width: 30%; */
+  aspect-ratio: 16 / 9;
   color: white;
   z-index: 100;
+  animation: formRotate 1s ease-in-out forwards;
+  transition: all 1s ease-in-out;
 }
 
+.form-register {
+  display: none;
+  background: #1c1b1a9d;
+  backdrop-filter: blur(7px);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #a40808a8;
+  /* width: 30%; */
+  aspect-ratio: 16 / 9;
+  color: white;
+  z-index: 100;
+  animation: formRotate 1s ease-in-out forwards;
+  transition: all 1s ease-in-out;
+}
+
+@keyframes formRotate {
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+/* transform: perspective(200px) rotateX(-8deg); */
 .title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -185,7 +324,8 @@ label {
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  
 }
 
 .btn-submit:hover {
@@ -198,10 +338,11 @@ label {
   color: #ccc;
 }
 
-.register-link a {
+.register-link span {
   color: #a40808;
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .register-link a:hover {
@@ -211,10 +352,18 @@ label {
 /* Burbujas */
 .container-bubble {
   position: absolute;
-  display: flex;
-  border-radius: 50%;
-  background-color: #a40808;
-  animation: bubbleLight 10s ease-in-out infinite;
+  /* background-color: green; */
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.error-credential {
+  position: relative;
+  color: red;
+  font-family: 'Oswald' sans-serif;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 @keyframes bubbleLight {
@@ -253,4 +402,94 @@ label {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 915px) and (min-width: 900px) {
+  .form {
+    width: 65%;
+    height: 33vh;
+  }
+}
+
+@media screen and (max-width: 770px) and (min-width: 750px) {
+  .form {
+    width: 70%;
+    height: 40vh;
+  }
+}
+
+@media screen and (max-width: 860px) and (min-width: 800px) {
+  .form {
+    width: 70%;
+    height: 40vh;
+  }
+}
+
+@media screen and (max-width: 3000px) and (min-width: 1200px) {
+  .form {
+    height: 60vh;
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 910px) and (min-width: 906px) {
+  .form {
+    height: 70vh;
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 765px) and (min-width: 763px) {
+  .form {
+    height: 70vh;
+    width: 48%;
+  }
+}
+
+
+
+
+
+@media screen and (max-width: 915px) and (min-width: 900px) {
+  .form-register {
+    width: 65%;
+    height: 37vh;
+  }
+}
+
+@media screen and (max-width: 770px) and (min-width: 750px) {
+  .form-register {
+    width: 70%;
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 860px) and (min-width: 800px) {
+  .form-register {
+    width: 70%;
+    height: 43vh;
+  }
+}
+
+@media screen and (max-width: 3000px) and (min-width: 1200px) {
+  .form-register {
+    height: 80h;
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 910px) and (min-width: 906px) {
+  .form-register {
+    height: 70vh;
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 765px) and (min-width: 763px) {
+  .form-register {
+    height: 70vh;
+    width: 48%;
+  }
+}
+
+
 </style>
