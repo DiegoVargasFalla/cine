@@ -1,13 +1,13 @@
 <template>
   <div class="container-login" id="background-id">
-    <!-- <bubble
+    <bubble
       v-for="(item, index) in propsBuble"
       :key="index"
       :left="item.left"
       :top="item.top"
       :height="item.size"
       :width="item.size"
-      ></bubble> -->
+      ></bubble>
     <Form @submit="onClickLogIn" class="form" id="form-id">
       <h1 class="title">Iniciar Sesión</h1>
       <div class="field">

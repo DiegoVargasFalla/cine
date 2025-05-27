@@ -206,6 +206,7 @@ document.addEventListener('scroll', () => {
     font-family: 'Oswald', sans-serif;
     font-size: 35px;
     font-weight: 700;
+    border: solid 1px white
 }
 
 @media screen and (min-width: 1350px) {
